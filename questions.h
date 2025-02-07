@@ -37,7 +37,7 @@ typedef struct {
 question questions[NUM_QUESTIONS];
 
 // Initializes the array of questions for the game
-extern void initialize_game(void);
+extern void initialize_questions(void);
 
 // Displays each of the remaining categories and question dollar values that have not been answered
 extern void display_categories(void);

@@ -11,9 +11,15 @@
 #define MAX_LEN 256
 
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
-extern void tokenize(char *input, char **tokens);
+void tokenize(char *input, char **tokens);
 
 // Displays the game results for each player, their name and final score, ranked from first to last place
-extern void show_results(player *players, int num_players);
+void show_results(player *players, int num_players);
+
+// Function to get player names and initialize players
+void get_player_names(player *players, int *num_players);
+
+// Function to initialize the game and introduce how it works 
+void initialize_game();
 
 #endif /* JEOPARDY_H_ */

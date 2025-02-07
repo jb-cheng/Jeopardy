@@ -11,7 +11,7 @@
 #include "questions.h"
 
 // Initializes the array of questions for the game
-void initialize_game(void)
+void initialize_questions(void)
 {
     // initialize each question struct and assign it to the questions array
 }
