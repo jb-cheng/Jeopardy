@@ -21,8 +21,10 @@ typedef struct {
 // Returns true if the player name matches one of the existing players
 extern bool player_exists(player *players, int num_players, char *name);
 
-// Go through the list of players and update the score for the 
-// player given their name
+// Adds a new player with initial score (earnings) of 0
+extern void create_new_player(player *players, int *num_players, char *name);
+
+// Updates the score for the player given their name
 extern void update_score(player *players, int num_players, char *name, int score);
 
 #endif /* PLAYERS_H_ */
