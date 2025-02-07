@@ -1,19 +1,25 @@
-/*
- * Tutorial 4 Jeopardy Project for SOFE 3950U / CSCI 3020U: Operating Systems
- *
- * Copyright (C) 2015, <GROUP MEMBERS>
- * All rights reserved.
- *
- */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "questions.h"
 
+//Global variables
+question questions[NUM_QUESTIONS];  // Define globally in only one place
+
+
 // Initializes the array of questions for the game
 void initialize_questions(void)
 {
     // initialize each question struct and assign it to the questions array
+
+    // Example initialization
+    strcpy(questions[0].category, "programming");
+    strcpy(questions[0].question, "What primative variable type supports the binary values of 'true' and 'false' ?");
+    strcpy(questions[0].answer, "main");
+    questions[0].value = 100;
+    questions[0].answered = false;
+    
+    // Repeat for all 12 questions...
 }
 
 // Displays each of the remaining categories and question dollar values that have not been answered

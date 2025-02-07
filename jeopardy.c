@@ -24,8 +24,7 @@
 #define BLUE "\033[1;34m"
 #define CYAN "\033[1;36m"
 
-// Put global environment variables here
-
+//Function declarations
 // Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
 void tokenize(char *input, char **tokens);
 
@@ -38,6 +37,8 @@ void get_player_names(player *players, int *num_players);
 // Function to initialize the game and introduce how it works 
 void initialize_game();
 
+
+//Function implementations
 int main(int argc, char *argv[])
 {
     // An array of 4 players
@@ -104,6 +105,28 @@ void initialize_game()
     printf(YELLOW "Good luck, and may the best contestant win!\n\n");
     
     printf(RESET_COLOR); // Reset to default color
+}
+
+// Displays the game results for each player, their name, and final score, ranked from first to last place
+void show_results(player *players, int num_players)
+{
+    // Sort players in descending order based on score (Bubble Sort for small arrays)
+    for (int i = 0; i < num_players - 1; i++) {
+        for (int j = 0; j < num_players - i - 1; j++) {
+            if (players[j].score < players[j + 1].score) {
+                // Swap players[j] and players[j+1]
+                player temp = players[j];
+                players[j] = players[j + 1];
+                players[j + 1] = temp;
+            }
+        }
+    }
+
+    // Print sorted results
+    printf("\n===== Final Results =====\n");
+    for (int i = 0; i < num_players; i++) {
+        printf("%d. %s - %d points\n", i + 1, players[i].name, players[i].score);
+    }
 }
 
 // Function to prompt users for player names and store them
