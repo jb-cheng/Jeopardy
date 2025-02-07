@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
     int num_players = 0;
     get_player_names(players, &num_players);
 
-    // Optionally, you can display the players and their scores
+    // Display the players and their scores
     for (int i = 0; i < num_players; i++) {
         printf("Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
     }
