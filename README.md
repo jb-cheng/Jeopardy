@@ -24,5 +24,9 @@ This project uses the C programming language to create a command-line versiob of
 - Better layout and instructions for an enhanced user experience
 
 
+## Setup and Installation
+### Prerequisites
+Please make sure the following are installed:
+1. 
 
 
