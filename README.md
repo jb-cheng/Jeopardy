@@ -82,7 +82,17 @@ Jeopardy-main/
 - hello.c
 - jeopardy.exe
 
-
+## Rules and How to Play
+1. 4 players are prompted to provide their names at the beginning of the game.
+2. Each player chooses a category and dollar value in turn.
+3. The relevant question is shown by our software.
+4. The player who answers must use the proper format:
+  For Instance: 'Who is Albert Einstein?' or 'What is Canada?'
+5. The Application verifies the answer:
+- Right Responses: points are awarded to player.
+- Wrong answer: no points are given, right response is disclosed.
+6. Until every question is addressed, the game goes on.
+7. The program selects a winner and shows the final scores. 
 
 
 
