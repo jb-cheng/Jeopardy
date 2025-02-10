@@ -94,7 +94,9 @@ Jeopardy-main/
 6. Until every question is addressed, the game goes on.
 7. The program selects a winner and shows the final scores. 
 
+## License
+The project is not connected to the official Jeopardy! game; rather, it is an educational endeavour. Feel free to alter and enhance it for educational reasons. 
 
-
-
+## Contact
+Please contact us through the GitHub repository or Canvas if you have any questions or concerns.
 
