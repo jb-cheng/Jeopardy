@@ -31,6 +31,31 @@ Please make sure the following are installed:
 
 ### Step by Step Guide on How to Run Our Project
 #### 1. Repository Cloning
-To download the project, open your terminal and run this:
+In order to download the project, open your terminal and run this:
+'''sh
+git clone < ADD REPO LINK > 
+cd Jeopardy-main
+'''
+
+#### 2. Compiling the Program
+Use the given Makefile to compile our project:
+'''sh
+make
+'''
+A file named 'jeopardy' will be generated. Make sure your compiler is configured correctly in the Makefile ('CC=gcc') if you experience any problems.
+
+#### 3. Running Jeopardy
+After the compilation is successful, run the game:
+'''sh
+./jeopardy
+'''
+
+For window users, use this:
+'''sh
+jeopardy.exe
+'''
+
+#### 4. Lets Start Playing
+
 
 
