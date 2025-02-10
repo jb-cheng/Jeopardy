@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <time.h>
 #include "players.h"
 
 // Returns true if the player name matches one of the existing players
@@ -26,11 +28,11 @@ bool player_exists(player *players, int num_players, char *name)
 // Adds a new player to the game with an initial score of 0
 void create_new_player(player *players, int *num_players, char *name)
 {
-    if (*num_players < 4)  // Ensuring we don't exceed max players
+    if (*num_players < 4) // Ensuring we don't exceed max players
     {
         strcpy(players[*num_players].name, name);
         players[*num_players].score = 0;
-        (*num_players)++;  // Increase the count of players
+        (*num_players)++; // Increase the count of players
     }
     else
     {

@@ -17,15 +17,14 @@
 #define BUFFER_LEN 256
 #define NUM_PLAYERS 4
 
-
 // ANSI escape codes for colors
 #define RESET_COLOR "\033[0m"
 #define YELLOW "\033[1;33m"
 #define BLUE "\033[1;34m"
 #define CYAN "\033[1;36m"
 
-//Function declarations
-// Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
+// Function declarations
+//  Processes the answer from the user containing what is or who is and tokenizes it to retrieve the answer.
 void tokenize(char *input, char **tokens);
 
 // Displays the game results for each player, their name and final score, ranked from first to last place
@@ -34,28 +33,34 @@ void show_results(player *players, int num_players);
 // Function to get player names and initialize players
 void get_player_names(player *players, int *num_players);
 
-// Function to initialize the game and introduce how it works 
+// Function to initialize the game and introduce how it works
 void initialize_game();
 
+void play_game(player *players, int num_players);
 
-//Function implementations
-int main(int argc, char *argv[])
+// Function implementations
+int main(void)
 {
     // An array of 4 players
     player players[NUM_PLAYERS];
-    
     // Input buffer and commands
-    char buffer[BUFFER_LEN] = { 0 };
+    char buffer[BUFFER_LEN] = {0};
 
     // Display the game introduction and initialize the questions
     initialize_game();
+    initialize_questions();
 
-    // Prompt for players names and initialize the player array
+    // Prompt for players' names and initialize the player array
     int num_players = 0;
     get_player_names(players, &num_players);
 
+    // Start the game
+    play_game(players, num_players);
+
+    // Display the final results and exit
     // Display the players and their scores
-    for (int i = 0; i < num_players; i++) {
+    for (int i = 0; i < num_players; i++)
+    {
         printf("Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
     }
 
@@ -72,14 +77,14 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
-// Function to initialize the game and introduce how it works 
+// Function to initialize the game and introduce how it works
 void initialize_game()
 {
     printf(YELLOW "==============================\n");
     printf("  WELCOME TO JEOPARDY!  \n");
     printf("==============================\n\n");
 
-    // ASCII art for Jeopardy 
+    // ASCII art for Jeopardy
     printf(BLUE);
     printf("       #####    ##########   #########   ##########      ######      ##########    ##########   #####   ####  ####\n");
     printf("       #####  ############  ###########  ###########    ########     ###########   ###########  #####  #####  ####\n");
@@ -98,22 +103,35 @@ void initialize_game()
     printf("############  ############  ###########  ####         ####    ####   #####  #####  ###########     #########      \n");
     printf(" ##########     #########    #########   ####         ####    ####   #####   #####  #########        #######   ## \n\n");
 
-
     // Game instructions/introduction
     printf(CYAN "Ready to test your knowledge? Players will compete in answering questions across various categories.\n");
     printf("Each correct answer earns points, and the player with the highest score wins!\n\n");
     printf(YELLOW "Good luck, and may the best contestant win!\n\n");
-    
+
     printf(RESET_COLOR); // Reset to default color
 }
 
+void tokenize(char *input, char **tokens)
+{
+    char *token = strtok(input, " ");
+    int i = 0;
+    while (token != NULL && i < 3)
+    {
+        tokens[i] = token;
+        token = strtok(NULL, " ");
+        i++;
+    }
+}
 // Displays the game results for each player, their name, and final score, ranked from first to last place
 void show_results(player *players, int num_players)
 {
     // Sort players in descending order based on score (Bubble Sort for small arrays)
-    for (int i = 0; i < num_players - 1; i++) {
-        for (int j = 0; j < num_players - i - 1; j++) {
-            if (players[j].score < players[j + 1].score) {
+    for (int i = 0; i < num_players - 1; i++)
+    {
+        for (int j = 0; j < num_players - i - 1; j++)
+        {
+            if (players[j].score < players[j + 1].score)
+            {
                 // Swap players[j] and players[j+1]
                 player temp = players[j];
                 players[j] = players[j + 1];
@@ -124,7 +142,8 @@ void show_results(player *players, int num_players)
 
     // Print sorted results
     printf("\n===== Final Results =====\n");
-    for (int i = 0; i < num_players; i++) {
+    for (int i = 0; i < num_players; i++)
+    {
         printf("%d. %s - %d points\n", i + 1, players[i].name, players[i].score);
     }
 }
@@ -138,7 +157,7 @@ void get_player_names(player *players, int *num_players)
     {
         printf("Please provide player %d name: ", i + 1);
         fgets(name, MAX_LEN, stdin);
-        
+
         // Remove trailing newline character
         name[strcspn(name, "\n")] = '\0';
 
@@ -154,3 +173,79 @@ void get_player_names(player *players, int *num_players)
     }
 }
 
+void play_game(player *players, int num_players)
+{
+    char buffer[BUFFER_LEN];
+    int current_player = 0;
+
+    while (1)
+    {
+        // Display the categories and dollar values
+        display_categories();
+        do
+        {
+            // Prompt the current player to select a category and dollar amount
+            printf("%s, it's your turn!\n", players[current_player].name);
+            printf("Enter the category and dollar amount (e.g., 'History 200'): ");
+            fgets(buffer, BUFFER_LEN, stdin);
+            buffer[strcspn(buffer, "\n")] = '\0';
+        } while (strlen(buffer) == 0);
+        // Parse the category and dollar amount
+        char category[MAX_LEN];
+        int value;
+        sscanf(buffer, "%s %d", category, &value);
+
+        // Validate the category and dollar amount
+        if (already_answered(category, value))
+        {
+            printf("This question has already been answered. Please choose another.\n");
+            continue;
+        }
+
+        // Display the question
+        display_question(category, value);
+
+        // Prompt the player for the answer
+        do
+        {
+            printf("Your answer (start with 'what is' or 'who is'): ");
+            fgets(buffer, BUFFER_LEN, stdin);
+            buffer[strcspn(buffer, "\n")] = '\0';
+        } while (strlen(buffer) == 0);
+
+        // Tokenize the answer
+        char *tokens[3];
+        tokenize(buffer, tokens);
+
+        // Validate the answer format
+        if (strcasecmp(tokens[0], "what") != 0 && strcasecmp(tokens[0], "who") != 0)
+        {
+            printf("Invalid answer format. Please start with 'What is' or 'Who is'.\n");
+            continue;
+        }
+
+        // Check if the answer is correct
+        if (valid_answer(category, value, tokens[0], tokens[2]))
+        {
+            printf("Correct!\n");
+            update_score(players, num_players, players[current_player].name, value);
+        }
+        else
+        {
+            printf("Incorrect. The correct answer is: %s\n", get_answer(category, value));
+        }
+
+        // Mark the question as answered
+        mark_answered(category, value);
+
+        // Check if all questions have been answered
+        if (all_questions_answered())
+        {
+            printf("All questions have been answered!\n");
+            break;
+        }
+
+        // Move to the next player
+        current_player = (current_player + 1) % num_players;
+    }
+}

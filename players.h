@@ -13,7 +13,8 @@
 #define MAX_LEN 256
 
 // Player struct for each player
-typedef struct {
+typedef struct
+{
     char name[MAX_LEN];
     int score;
 } player;

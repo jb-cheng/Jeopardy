@@ -11,16 +11,18 @@
 #include <stdbool.h>
 
 #define MAX_LEN 256
-#define NUM_CATEGORIES 3
-#define NUM_QUESTIONS 12
+#define NUM_CATEGORIES 4
+#define NUM_QUESTIONS 16
 
 // Questions struct for each question
-typedef struct {
+typedef struct
+{
     char category[MAX_LEN];
     char question[MAX_LEN];
     char answer[MAX_LEN];
     int value;
     bool answered;
+    char type[MAX_LEN];
 } question;
 
 // Declaring 'questions' as extern to prevent multiple definitions
@@ -29,11 +31,6 @@ typedef struct {
 extern question questions[];
 
 // List of 3 categories as array of strings
-static char categories[NUM_CATEGORIES][MAX_LEN] = {
-    "programming", 
-    "algorithms", 
-    "databases"
-};
 
 // Initializes the array of questions for the game
 extern void initialize_questions(void);
@@ -45,9 +42,18 @@ extern void display_categories(void);
 extern void display_question(char *category, int value);
 
 // Returns true if the answer is correct for the question for that category and dollar value
-extern bool valid_answer(char *category, int value, char *answer);
+extern bool valid_answer(char *category, int value, char *answer, char *type);
 
 // Returns true if the question has already been answered
 extern bool already_answered(char *category, int value);
+
+// Marks a question as answered
+extern void mark_answered(char *category, int value);
+
+// Returns true if all questions have been answered
+extern bool all_questions_answered(void);
+
+// Returns the correct answer for a given category and dollar value
+extern char *get_answer(char *category, int value);
 
 #endif /* QUESTIONS_H_ */
