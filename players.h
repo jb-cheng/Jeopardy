@@ -11,9 +11,11 @@
 #include <stdbool.h>
 
 #define MAX_LEN 256
+#define MAX_SELECTIONS 2 // Maximum times a player can be chosen in a round
 
 // Player struct for each player
-typedef struct {
+typedef struct
+{
     char name[MAX_LEN];
     int score;
 } player;
@@ -26,5 +28,7 @@ extern void create_new_player(player *players, int *num_players, char *name);
 
 // Updates the score for the player given their name
 extern void update_score(player *players, int num_players, char *name, int score);
+
+extern player *select_random_player(player *players, int num_players, int *selection_count);
 
 #endif /* PLAYERS_H_ */

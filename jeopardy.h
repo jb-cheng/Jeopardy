@@ -19,7 +19,9 @@ void show_results(player *players, int num_players);
 // Function to get player names and initialize players
 void get_player_names(player *players, int *num_players);
 
-// Function to initialize the game and introduce how it works 
+// Function to initialize the game and introduce how it works
 void initialize_game();
+
+void play_game(player *players, int num_players);
 
 #endif /* JEOPARDY_H_ */
