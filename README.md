@@ -56,6 +56,35 @@ jeopardy.exe
 '''
 
 #### 4. Lets Start Playing
+- Each player will be prompted to enter their name by the game.
+- Players alternately choose categories and respond to inquiries.
+- The format of the responses must be 'What is' or 'Who is'.
+- At the conclusion of the game, the winner is announced and scores are tracked.
+
+#### 5. Clean Up
+To remove the compiled file, use this:
+'''sh
+make clean
+'''
+
+## File Structure
+The following File Structure shows what each file is for and its file placement:
+
+Jeopardy-main/
+- Makefile
+- README.md
+- jeopardy.c
+- jeopardy.h
+- players.c
+- players.h
+- questions.c
+- questions.h
+- hello.c
+- jeopardy.exe
+
+
+
+
 
 
 
