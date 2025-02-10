@@ -182,13 +182,14 @@ void play_game(player *players, int num_players)
     {
         // Display the categories and dollar values
         display_categories();
-
-        // Prompt the current player to select a category and dollar amount
-        printf("%s, it's your turn!\n", players[current_player].name);
-        printf("Enter the category and dollar amount (e.g., 'History 200'): ");
-        fgets(buffer, BUFFER_LEN, stdin);
-        buffer[strcspn(buffer, "\n")] = '\0';
-
+        do
+        {
+            // Prompt the current player to select a category and dollar amount
+            printf("%s, it's your turn!\n", players[current_player].name);
+            printf("Enter the category and dollar amount (e.g., 'History 200'): ");
+            fgets(buffer, BUFFER_LEN, stdin);
+            buffer[strcspn(buffer, "\n")] = '\0';
+        } while (strlen(buffer) == 0);
         // Parse the category and dollar amount
         char category[MAX_LEN];
         int value;
@@ -205,9 +206,12 @@ void play_game(player *players, int num_players)
         display_question(category, value);
 
         // Prompt the player for the answer
-        printf("Your answer (start with 'what is' or 'who is'): ");
-        fgets(buffer, BUFFER_LEN, stdin);
-        buffer[strcspn(buffer, "\n")] = '\0';
+        do
+        {
+            printf("Your answer (start with 'what is' or 'who is'): ");
+            fgets(buffer, BUFFER_LEN, stdin);
+            buffer[strcspn(buffer, "\n")] = '\0';
+        } while (strlen(buffer) == 0);
 
         // Tokenize the answer
         char *tokens[3];
