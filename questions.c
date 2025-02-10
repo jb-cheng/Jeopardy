@@ -139,6 +139,7 @@ static char categories[NUM_CATEGORIES][MAX_LEN] = {
 void display_categories(void)
 {
     // print categories and dollar values for each unanswered question in questions array
+    printf("\n");
     printf("--------------------------------------------------------------\n");
 
     // Print category headers
@@ -146,7 +147,7 @@ void display_categories(void)
     {
         printf("| %-12s ", categories[i]);
     }
-    printf("|\n--------------------------------------------------------------\n");
+    printf("|\n-------------------------------------------------------------\n");
 
     // Print dollar values for each category
     for (int col = 0; col < 4; col++)
@@ -161,7 +162,8 @@ void display_categories(void)
         }
         printf("|\n");
     }
-    printf("--------------------------------------------------------------\n");
+    printf("------------------------------------------------------------\n");
+    printf("\n");
 }
 
 // Displays the question for the category and dollar value
