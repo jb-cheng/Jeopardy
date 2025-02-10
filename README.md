@@ -23,11 +23,14 @@ This project uses the C programming language to create a command-line versiob of
 - Improved input validity and error handling
 - Better layout and instructions for an enhanced user experience
 
-
 ## Setup and Installation
 ### Prerequisites
 Please make sure the following are installed:
-- Make (to use the given Makefile
+- Make (to use the given Makefile)
 - Git (optional for version control)
+
+### Step by Step Guide on How to Run Our Project
+#### 1. Repository Cloning
+To download the project, open your terminal and run this:
 
 
