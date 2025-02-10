@@ -15,7 +15,13 @@ This project uses the C programming language to create a command-line versiob of
 - Up to 4 players are supported
 - A command-line interface that is interactive
 - Participants choose categories and respond using the 'What is' or 'Who is' formats
-- Player
+- Player scores are dynamically tracked
+- Prevents the occurrence of potentially choosing duplicate questions
+- At the end of the game, the final rankings as well as the winners are displayed
+- Implementation in C thats modular and uses organized source files and headers.
+- Makefile to facilitate compilation.
+- Improved input validity and error handling
+- Better layout and instructions for an enhanced user experience
 
 
 
