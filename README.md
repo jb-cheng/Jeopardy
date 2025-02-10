@@ -33,7 +33,7 @@ Please make sure the following are installed:
 #### 1. Repository Cloning
 In order to download the project, open your terminal and run this:
 '''sh
-git clone < ADD REPO LINK > 
+git clone < ADD [REPO LINK](https://github.com/jb-cheng/Jeopardy.git) > 
 cd Jeopardy-main
 '''
 
