@@ -27,6 +27,7 @@ This project uses the C programming language to create a command-line versiob of
 ## Setup and Installation
 ### Prerequisites
 Please make sure the following are installed:
-1. 
+- Make (to use the given Makefile
+- Git (optional for version control)
 
 
