@@ -205,7 +205,7 @@ void play_game(player *players, int num_players)
         display_question(category, value);
 
         // Prompt the player for the answer
-        printf("Your answer (start with 'What is' or 'Who is'): ");
+        printf("Your answer (start with 'what is' or 'who is'): ");
         fgets(buffer, BUFFER_LEN, stdin);
         buffer[strcspn(buffer, "\n")] = '\0';
 
@@ -214,7 +214,7 @@ void play_game(player *players, int num_players)
         tokenize(buffer, tokens);
 
         // Validate the answer format
-        if (strcasecmp(tokens[0], "What is") != 0 && strcasecmp(tokens[0], "Who is") != 0)
+        if (strcasecmp(tokens[0], "what") != 0 && strcasecmp(tokens[0], "who") != 0)
         {
             printf("Invalid answer format. Please start with 'What is' or 'Who is'.\n");
             continue;
