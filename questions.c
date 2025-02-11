@@ -183,7 +183,7 @@ void display_categories(void)
 }
 
 // Displays the question for the category and dollar value
-void display_question(char *category, int value)
+bool display_question(char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
