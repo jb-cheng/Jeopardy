@@ -211,7 +211,6 @@ bool valid_answer(char *category, int value, char *answer, char *type)
             }
             return strcasecmp(questions[i].answer, answer) == 0;
         }
-        return strcasecmp(questions[i].answer, answer) == 0;
     }
     return false;
 }
