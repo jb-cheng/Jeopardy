@@ -54,6 +54,6 @@ extern void mark_answered(char *category, int value);
 extern bool all_questions_answered(void);
 
 // Returns the correct answer for a given category and dollar value
-extern char *get_answer(char *category, int value);
+extern char *get_answer(char* string, char *category, int value);
 
 #endif /* QUESTIONS_H_ */
