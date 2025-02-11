@@ -193,7 +193,8 @@ bool display_question(char *category, int value)
             return true;
         }
     }
-    printf("Invalid category or value.\n");
+    printf("Invalid category or value, please try again.\n");
+    return false;
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
