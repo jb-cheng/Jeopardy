@@ -238,7 +238,9 @@ void play_game(player *players, int num_players)
         }
         else
         {
-            printf("Incorrect. The correct answer is: %s\n", get_answer(category, value));
+            char string[512];
+            char* ans = get_answer(string, category, value);
+            printf("Incorrect. The correct answer is: %s %s\n", string, ans);
         }
 
         // Mark the question as answered
