@@ -74,13 +74,10 @@ int main(void)
     printf("Player %d: %s, Score: %d\n", 1, players[0].name, players[0].score);
     for (int i = 1; i < num_players; i++)
     {
-        // Call functions from the questions and players source files
-
-        // Execute the game until all questions are answered
-
-        // Display the final results and exit
-        show_results(players, num_players);
+        printf("   Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
     }
+
+    printf("CONGRATULATIONS PLAYER %s!\n\n", players[0].name);
     return EXIT_SUCCESS;
 }
 
