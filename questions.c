@@ -183,17 +183,18 @@ void display_categories(void)
 }
 
 // Displays the question for the category and dollar value
-void display_question(char *category, int value)
+bool display_question(char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             printf("Question: %s\n", questions[i].question);
-            return;
+            return true;
         }
     }
-    printf("Invalid category or value.\n");
+    printf("Invalid category or value, please try again.\n");
+    return false;
 }
 
 // Returns true if the answer is correct for the question for that category and dollar value
@@ -202,14 +203,14 @@ bool valid_answer(char *category, int value, char *answer, char *type)
     // Look into string comparison functions
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             if (strcasecmp(questions[i].type, type) != 0)
             {
                 return false; // Answer format does not match
             }
+            return strcasecmp(questions[i].answer, answer) == 0;
         }
-        return strcasecmp(questions[i].answer, answer) == 0;
     }
     return false;
 }
@@ -220,7 +221,7 @@ bool already_answered(char *category, int value)
     // lookup the question and see if it's already been marked as answered
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             return questions[i].answered;
         }
@@ -232,7 +233,7 @@ void mark_answered(char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             questions[i].answered = true;
             return;
@@ -254,12 +255,13 @@ bool all_questions_answered(void)
 }
 
 // Returns the correct answer for a given category and dollar value
-char *get_answer(char *category, int value)
+char *get_answer(char* string, char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
+            snprintf(string, sizeof(string), "%s is", questions[i].type);
             return questions[i].answer;
         }
     }

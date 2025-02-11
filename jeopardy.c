@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <wchar.h>
+#include <locale.h>
 #include "questions.h"
 #include "players.h"
 #include "jeopardy.h"
@@ -39,12 +41,14 @@ void initialize_game();
 void play_game(player *players, int num_players);
 
 // Function implementations
+int compare_scores(const void* a, const void* b) {
+    return ((player*)b)->score - ((player*)a)->score;
+}
+
 int main(void)
 {
     // An array of 4 players
     player players[NUM_PLAYERS];
-    // Input buffer and commands
-    char buffer[BUFFER_LEN] = {0};
 
     // Display the game introduction and initialize the questions
     initialize_game();
@@ -59,21 +63,19 @@ int main(void)
 
     // Display the final results and exit
     // Display the players and their scores
-    for (int i = 0; i < num_players; i++)
+    int n = sizeof(players) / sizeof(players[0]);
+    qsort(players, n, sizeof(player), compare_scores);
+
+    setlocale(LC_ALL, ""); // Enable Unicode support
+    wchar_t crown = L'👑'; // Unicode crown character
+    wprintf(L"%lc ", crown); // Print the emoji
+    printf("Player %d: %s, Score: %d\n", 1, players[0].name, players[0].score);
+    for (int i = 1; i < num_players; i++)
     {
-        printf("Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
+        printf("   Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
     }
 
-    // Perform an infinite loop getting command input from users until game ends
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
-    {
-        // Call functions from the questions and players source files
-
-        // Execute the game until all questions are answered
-
-        // Display the final results and exit
-        show_results(players, num_players);
-    }
+    printf("CONGRATULATIONS PLAYER %s!\n\n", players[0].name);
     return EXIT_SUCCESS;
 }
 
@@ -203,7 +205,11 @@ void play_game(player *players, int num_players)
         }
 
         // Display the question
-        display_question(category, value);
+        if (display_question(category, value) == false)
+        {
+            // Question is invalid
+            continue;
+        }
 
         // Prompt the player for the answer
         do
@@ -225,14 +231,16 @@ void play_game(player *players, int num_players)
         }
 
         // Check if the answer is correct
-        if (valid_answer(category, value, tokens[0], tokens[2]))
+        if (valid_answer(category, value, tokens[2], tokens[0]))
         {
             printf("Correct!\n");
             update_score(players, num_players, players[current_player].name, value);
         }
         else
         {
-            printf("Incorrect. The correct answer is: %s\n", get_answer(category, value));
+            char string[512];
+            char* ans = get_answer(string, category, value);
+            printf("Incorrect. The correct answer is: %s %s\n", string, ans);
         }
 
         // Mark the question as answered
@@ -241,7 +249,7 @@ void play_game(player *players, int num_players)
         // Check if all questions have been answered
         if (all_questions_answered())
         {
-            printf("All questions have been answered!\n");
+            printf("All questions have been answered!\n\n\n");
             break;
         }
 
