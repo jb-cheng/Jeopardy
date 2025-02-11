@@ -231,7 +231,7 @@ void play_game(player *players, int num_players)
         }
 
         // Check if the answer is correct
-        if (valid_answer(category, value, tokens[0], tokens[2]))
+        if (valid_answer(category, value, tokens[2], tokens[0]))
         {
             printf("Correct!\n");
             update_score(players, num_players, players[current_player].name, value);
