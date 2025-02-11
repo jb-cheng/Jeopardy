@@ -261,6 +261,7 @@ char *get_answer(char* string, char *category, int value)
     {
         if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
+            snprintf(string, sizeof(string), "%s is", questions[i].type);
             return questions[i].answer;
         }
     }
