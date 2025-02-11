@@ -259,7 +259,7 @@ char *get_answer(char* string, char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             return questions[i].answer;
         }
