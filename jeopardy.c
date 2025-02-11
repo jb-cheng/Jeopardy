@@ -49,8 +49,6 @@ int main(void)
 {
     // An array of 4 players
     player players[NUM_PLAYERS];
-    // Input buffer and commands
-    char buffer[BUFFER_LEN] = {0};
 
     // Display the game introduction and initialize the questions
     initialize_game();
