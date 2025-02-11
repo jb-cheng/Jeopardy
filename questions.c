@@ -30,8 +30,8 @@ void initialize_questions(void)
 
     // what
     strcpy(questions[2].category, "Programming");
-    strcpy(questions[2].question, "What does HTML stand for?");
-    strcpy(questions[2].answer, "Hypertext Markup Language");
+    strcpy(questions[2].question, "What function in the C programming language allows allocation of dynamic memory (just give the function name)?");
+    strcpy(questions[2].answer, "malloc");
     strcpy(questions[2].type, "what");
     questions[2].value = 300;
     questions[2].answered = false;

@@ -19,6 +19,10 @@
 #define BUFFER_LEN 256
 #define NUM_PLAYERS 4
 
+//Global variables
+// An array of 4 players
+player players[NUM_PLAYERS];
+
 // ANSI escape codes for colors
 #define RESET_COLOR "\033[0m"
 #define YELLOW "\033[1;33m"
@@ -47,8 +51,6 @@ int compare_scores(const void* a, const void* b) {
 
 int main(void)
 {
-    // An array of 4 players
-    player players[NUM_PLAYERS];
 
     // Display the game introduction and initialize the questions
     initialize_game();
@@ -66,9 +68,6 @@ int main(void)
     int n = sizeof(players) / sizeof(players[0]);
     qsort(players, n, sizeof(player), compare_scores);
 
-    setlocale(LC_ALL, ""); // Enable Unicode support
-    wchar_t crown = L'👑'; // Unicode crown character
-    wprintf(L"%lc ", crown); // Print the emoji
     printf("Player %d: %s, Score: %d\n", 1, players[0].name, players[0].score);
     for (int i = 1; i < num_players; i++)
     {
@@ -127,26 +126,11 @@ void tokenize(char *input, char **tokens)
 // Displays the game results for each player, their name, and final score, ranked from first to last place
 void show_results(player *players, int num_players)
 {
-    // Sort players in descending order based on score (Bubble Sort for small arrays)
-    for (int i = 0; i < num_players - 1; i++)
+    printf("\n---------------CURRENT SCORES:------------------- \n");
+    printf("Player %d: %s, Score: %d\n", 1, players[0].name, players[0].score);
+    for (int i = 1; i < num_players; i++)
     {
-        for (int j = 0; j < num_players - i - 1; j++)
-        {
-            if (players[j].score < players[j + 1].score)
-            {
-                // Swap players[j] and players[j+1]
-                player temp = players[j];
-                players[j] = players[j + 1];
-                players[j + 1] = temp;
-            }
-        }
-    }
-
-    // Print sorted results
-    printf("\n===== Final Results =====\n");
-    for (int i = 0; i < num_players; i++)
-    {
-        printf("%d. %s - %d points\n", i + 1, players[i].name, players[i].score);
+        printf("   Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
     }
 }
 
@@ -242,9 +226,10 @@ void play_game(player *players, int num_players)
             char* ans = get_answer(string, category, value);
             printf("Incorrect. The correct answer is: %s %s\n", string, ans);
         }
-
         // Mark the question as answered
         mark_answered(category, value);
+        
+        show_results(players, NUM_PLAYERS);
 
         // Check if all questions have been answered
         if (all_questions_answered())
