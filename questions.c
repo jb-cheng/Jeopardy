@@ -255,7 +255,7 @@ bool all_questions_answered(void)
 }
 
 // Returns the correct answer for a given category and dollar value
-char *get_answer(char *category, int value)
+char *get_answer(char* string, char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
