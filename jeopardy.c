@@ -41,6 +41,10 @@ void initialize_game();
 void play_game(player *players, int num_players);
 
 // Function implementations
+int compare_scores(const void* a, const void* b) {
+    return ((player*)b)->score - ((player*)a)->score;
+}
+
 int main(void)
 {
     // An array of 4 players
