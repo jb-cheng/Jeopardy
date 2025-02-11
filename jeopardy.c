@@ -65,13 +65,14 @@ int main(void)
 
     // Display the final results and exit
     // Display the players and their scores
-    for (int i = 0; i < num_players; i++)
-    {
-        printf("Player %d: %s, Score: %d\n", i + 1, players[i].name, players[i].score);
-    }
+    int n = sizeof(players) / sizeof(players[0]);
+    qsort(players, n, sizeof(player), compare_scores);
 
-    // Perform an infinite loop getting command input from users until game ends
-    while (fgets(buffer, BUFFER_LEN, stdin) != NULL)
+    setlocale(LC_ALL, ""); // Enable Unicode support
+    wchar_t crown = L'👑'; // Unicode crown character
+    wprintf(L"%lc ", crown); // Print the emoji
+    printf("Player %d: %s, Score: %d\n", 1, players[0].name, players[0].score);
+    for (int i = 1; i < num_players; i++)
     {
         // Call functions from the questions and players source files
 
