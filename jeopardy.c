@@ -249,7 +249,7 @@ void play_game(player *players, int num_players)
         // Check if all questions have been answered
         if (all_questions_answered())
         {
-            printf("All questions have been answered!\n");
+            printf("All questions have been answered!\n\n\n");
             break;
         }
 
