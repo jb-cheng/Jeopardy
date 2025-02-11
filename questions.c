@@ -203,7 +203,7 @@ bool valid_answer(char *category, int value, char *answer, char *type)
     // Look into string comparison functions
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             if (strcasecmp(questions[i].type, type) != 0)
             {
