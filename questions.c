@@ -233,7 +233,7 @@ void mark_answered(char *category, int value)
 {
     for (int i = 0; i < NUM_QUESTIONS; i++)
     {
-        if (strcmp(questions[i].category, category) == 0 && questions[i].value == value)
+        if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             questions[i].answered = true;
             return;
