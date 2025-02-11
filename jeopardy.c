@@ -205,7 +205,11 @@ void play_game(player *players, int num_players)
         }
 
         // Display the question
-        display_question(category, value);
+        if (display_question(category, value) == false)
+        {
+            // Question is invalid
+            continue;
+        }
 
         // Prompt the player for the answer
         do
