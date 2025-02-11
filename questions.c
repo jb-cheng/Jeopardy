@@ -190,7 +190,7 @@ bool display_question(char *category, int value)
         if (strcasecmp(questions[i].category, category) == 0 && questions[i].value == value)
         {
             printf("Question: %s\n", questions[i].question);
-            return;
+            return true;
         }
     }
     printf("Invalid category or value.\n");
