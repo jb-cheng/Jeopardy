@@ -31,9 +31,9 @@ Please make sure the following are installed:
 
 ### Step by Step Guide on How to Run Our Project
 #### 1. Repository Cloning
-In order to download the project, open your terminal and run this:
+In order to download the project, open your terminal and run the following lines:
 '''sh
-git clone < ADD [REPO LINK](https://github.com/jb-cheng/Jeopardy.git) > 
+git clone https://github.com/jb-cheng/Jeopardy.git
 cd Jeopardy-main
 '''
 
@@ -96,7 +96,3 @@ Jeopardy-main/
 
 ## License
 The project is not connected to the official Jeopardy! game; rather, it is an educational endeavour. Feel free to alter and enhance it for educational reasons. 
-
-## Contact
-Please contact us through the GitHub repository or Canvas if you have any questions or concerns.
-
